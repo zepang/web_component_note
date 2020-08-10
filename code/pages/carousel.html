@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <template id="carousel">
+    <h2></h2>
+    <h4></h4>
+    <div class="image-container"></div>
+    <button class="prev">&lt;</button>
+    <button class="next">&gt;</button>
+
+    <style>
+      h2, h4 {
+        margin-top: 0;
+        margin-bottom: 0;
+        margin-left: 10px;
+      }
+
+      .image-container {
+        margin-top: 15px;
+        flex: 1;
+        background-color: black;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+      }
+    </style>
+  </template>
+
+  <style>
+    tc-carousel {
+      width: 800px;
+      height: 600px;
+      display: flex;
+      padding-top: 10px;
+      flex-direction: column;
+      border-color: black;
+      border-width: 1px;
+      border-style: solid;
+    }
+  </style>
+
+  <tc-carousel title="Future Vacation Photos" author="Ben Farrell" photos="http://lorempixel.com/400/600/, http://lorempixel.com/400/600/, http://lorempixel.com/400/600/, http://lorempixel.com/400/600/"></tc-carousel>  
+  <script src="../js/carousel.js"></script>
+</body>
+</html>
