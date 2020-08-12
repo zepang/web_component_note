@@ -28,11 +28,28 @@
         background-size: contain;
         background-position: center;
       }
+      button {
+        position: absolute;
+        background-color: transparent;
+        border: none;
+        font-size: 48px;
+        color: white;
+        top: 50%;
+      }
+
+      .prev {
+        left: 10px;
+      }
+
+      .next {
+        right: 10px;
+      }
     </style>
   </template>
 
   <style>
     tc-carousel {
+      position: relative;
       width: 800px;
       height: 600px;
       display: flex;
