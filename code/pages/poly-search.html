@@ -19,7 +19,20 @@
       margin: 5px;
     }
   </style>
-  <poly-search></poly-search> 
+  <label for="">Enter SearchTerm:</label>
+  <input type="text" onchange="updatePolySeach(event)"/>
+  <poly-search 
+    baseuri="https://poly.googleapis.com/v1/assets"
+    apikey="AIzaSyDAVRwVpYVdrLrhVvnJbmsM6LB9wzlf-O4" 
+    searchterm="parrot"
+    thumbheight="50"
+    format="OBJ"
+  ></poly-search> 
   <script src="../js/poly-search.js"></script>
+  <script>
+    function updatePolySeach(e) {
+      document.querySelector('poly-search').setAttribute('searchTerm', e.target.value)
+    }
+  </script>
 </body>
 </html>
