@@ -34,6 +34,9 @@ class SliderBar extends HTMLElement {
   connectedCallback () {
     this.setColor(this.backgroundcolor)
     this.refreshSlider(this.value)
+    document.addEventListener('mousemove', e =>  this.eventHandler(e))
+    document.addEventListener('mouseup', e => this.eventHandler(e))
+    this.addEventListener('mousedown', e => this.eventHandler(e))
   }
 
   attributeChangedCallback (name, oldValue, newValue) {
@@ -44,6 +47,32 @@ class SliderBar extends HTMLElement {
       case 'backgroundcolor':
         debugger
         tgus.setColor(newValue)
+        break
+    }
+  }
+
+  updateX (x) {
+    let hpos = x - this. 
+  }
+
+  eventHandler (e) {
+    const bunds = this.getBoundingClientRect()
+    const x = e.clientX - bunds.left
+
+    switch (e.type) {
+      case 'mousemove':
+        if (this.isDragging) {
+          this.updateX(x)
+          this.refreshSlider(this.value)
+        }
+        break
+      case 'mouseup':
+        this.isDragging = false
+        break
+      case 'mousedown':
+        this.isDragging = true
+        this.updateX(x)
+        this.refreshSlider(this.value)
         break
     }
   }
