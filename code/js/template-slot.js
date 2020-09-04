@@ -52,7 +52,16 @@ class SliderBar extends HTMLElement {
   }
 
   updateX (x) {
-    let hpos = x - this. 
+    let hpos = x - this.shadowRoot.querySelector('.thumb').offsetWidth / 2
+    if (hpos > this.offsetWidth) {
+      hpos = this.offsetWidth
+    } 
+
+    if (hpos < 0) {
+      hpos = 0
+    }
+
+    this.value = (hpos / this.offsetWidth) * 100 
   }
 
   eventHandler (e) {
@@ -78,7 +87,6 @@ class SliderBar extends HTMLElement {
   }
 
   setColor (color) {
-    console.log(color)
     if (this.shadowRoot.querySelector('.bg-overlay')) {
       this.shadowRoot.querySelector('.bg-overlay').style.backgroundColor = `linear-gradient(to right, ${color} 0%, ${color}00 100%)`
     }
@@ -86,7 +94,7 @@ class SliderBar extends HTMLElement {
 
   refreshSlider (value) {
     if (this.shadowRoot.querySelector('.thumb')) {
-      this.shadowRoot.querySelector('.thumb').style.left = `${value/100 * (this.offsetWidth - this.shadowRoot.querySelector('.thumb').offsetWidth / 2)}px `
+      this.shadowRoot.querySelector('.thumb').style.left = `${value / 100 * (this.offsetWidth - this.shadowRoot.querySelector('.thumb').offsetWidth / 2)}px `
     }
   }
 }
