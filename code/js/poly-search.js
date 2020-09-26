@@ -4,22 +4,37 @@ class PolySearch extends HTMLElement {
     this.API_KEY = 'AIzaSyDAVRwVpYVdrLrhVvnJbmsM6LB9wzlf-O4'
   }
 
+  set apiKey (value) {
+    this._apiKey = value
+    this.doSearch()
+  }
+
+  set searchTerm (value) {
+    this._searchTerm = value
+    this.doSearch()
+  }
+
+  getSearchTerm () {
+    return this._searchTerm
+  }
+
   connectedCallback () {
     this.doSearch()
   }
 
   doSearch () {
-    const API_KEY = this.API_KEY
-    const url = `https://poly.googleapis.com/v1/assets?keywords=parrot&format=OBJ&key=${API_KEY}`
+    if (this._apiKey && this._searchTerm) {
+      const url = `https://poly.googleapis.com/v1/assets?keywords=${this._searchTerm}&format=OBJ&key=${this._apiKey}`
 
-    const request = new XMLHttpRequest()
-    request.open('GET', url, true)
-    request.addEventListener('load', event => {
-      const assets = JSON.parse(event.target.response).assets 
-      this.renderResult(assets)
-    })
+      const request = new XMLHttpRequest()
+      request.open('GET', url, true)
+      request.addEventListener('load', event => {
+        const assets = JSON.parse(event.target.response).assets 
+        this.renderResult(assets)
+      })
 
-    request.send()
+      request.send()
+    }
   }
 
   renderResult (assets) {
