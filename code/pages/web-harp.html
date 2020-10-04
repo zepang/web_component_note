@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Harp</title>
+  <script src="./components/app/app.js" type="module"></script>
+  <link rel="stylesheet" href="./styles/csshake.css">
+  <link rel="stylesheet" href="./styles/web-harp/main.css">
+  <style>
+    body {
+      background-color: #000000;
+      margin: 0;
+      padding: 0;
+    }
+
+    .audio-fix {
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      background-color: #2a2a2a;
+      color: white;
+      font-size: xx-large;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    webharp-app {
+      display: none;
+      position: absolute;
+      height: 100vh;
+      width: 100vw;
+    }
+  </style>
+</head>
+<body>
+  <webharp-app strings="12"></webharp-app>
+  <div class="audio-fix" onclick="clicktoStart()">
+    Click Me To Start
+  </div>
+  <script>
+    function clicktoStart () {
+      document.querySelector('.audio-fix').style.display = 'none'
+    document.querySelector('webharp-app').style.display = 'inline-block'
+    }
+  </script>
+</body>
+</html>
