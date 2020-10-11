@@ -4,8 +4,32 @@ export default {
             ${this.css(props)}`
   },
 
+  options (list) {
+    let choice = ``
+    for (let p of list) {
+        choice += `<option value="${p.uri}">${p.name}</option>`
+    }
+
+    return `<select>${choice}</select>`
+  },
+
+  mapDom (scope) {
+    return {
+        logoPicker: scope.querySelector('.logo-picker select'),
+        backgroundPicker: scope.querySelector('.background-picker select'),
+        logo: scope.querySelector('.logo'),
+        background: scope.querySelector('.biz-card')
+    }
+  },
+
   html (p) {
-    return `<div class="biz-card">
+    return `<div class="logo-picker">
+                Logo: ${this.options(p.logoChoices)}
+            </div>
+            <div class="background-picker">
+                Background:${this.options(p.backgroundChoices)}
+            </div>
+            <div class="biz-card">
               <div class="logo"></div>
               <div class="top-text">
                   <h1>${p.first_name} ${p.last_name}</h1>

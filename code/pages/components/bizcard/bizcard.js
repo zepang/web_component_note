@@ -26,8 +26,15 @@ class BizCard extends HTMLElement {
       ],
     })
 
-    console.log(this.innerHTML)
+    this.dom = Template.mapDOM(this);
+    this.dom.backgroundPicker.addEventListener( 'change', e => this.updateGraphics());
+    this.dom.logoPicker.addEventListener('change', e => this.updateGraphics());
   }
+
+  updateGraphics() {
+    this.dom.background.style.backgroundImage =`url("${this.dom.backgroundPicker.value}")`;
+    this.dom.logo.style.backgroundImage =`url("${this.dom.logoPicker.value}")`;
+   }
 }
 
 if (!customElements.get('biz-card')) {
