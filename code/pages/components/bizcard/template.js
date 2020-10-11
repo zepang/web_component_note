@@ -1,6 +1,6 @@
 export default {
   render (props) {
-    return `${this.html([props])}
+    return `${this.html(props)}
             ${this.css(props)}`
   },
 
@@ -30,7 +30,7 @@ export default {
                   display: inline-block;
                   border-color: #9a9a9a;
                   background-size: 5%;
-                  background-image: url("background-pattern.png");
+                  background-image: url("./images/background-pattern.png");
                   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
               }
 
@@ -38,7 +38,7 @@ export default {
                   height: 100px;
                   margin-top: 10%;
                   text-align: center;
-                  background-image: url("biz-card-logo.png");
+                  background-image: url("./images/biz-card-logo.png");
                   background-size: contain;
                   background-position-x: center;
                   background-repeat: no-repeat;
