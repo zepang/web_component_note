@@ -1,6 +1,18 @@
+import { html } from './lit-html/lit-html.js'
+import { repeat } from './lit-html/directives/repeat.js'
 export default {
-  render (props) {
-    return `${this.html(props)}
+  render (controller, props) {
+    return html`<div class="logo-picker">Logo:
+                <select @change="${e => { controller.updateGraphics()}}">
+                    ${repeat(props.logoChoices, (i) => i.id, (i, index) => html`<option value="${i.uri}">${i.name}</option>`)}
+                </select>
+            </div>
+            <div class="background-picker">Background:
+                <select @change="${e => {controller.updateGraphics()}}">
+                    ${repeat(props.backgroundChoices, (i) => i.id, (i, index) => html`<option value="${i.uri}">${i.name}</option>`)}
+                </select>
+            </div>
+            ${this.html(props)}
             ${this.css(props)}`
   },
 
@@ -13,7 +25,7 @@ export default {
     return `<select>${choice}</select>`
   },
 
-  mapDom (scope) {
+  mapDOM (scope) {
     return {
         logoPicker: scope.querySelector('.logo-picker select'),
         backgroundPicker: scope.querySelector('.background-picker select'),
@@ -23,12 +35,7 @@ export default {
   },
 
   html (p) {
-    return `<div class="logo-picker">
-                Logo: ${this.options(p.logoChoices)}
-            </div>
-            <div class="background-picker">
-                Background:${this.options(p.backgroundChoices)}
-            </div>
+    return html`
             <div class="biz-card">
               <div class="logo"></div>
               <div class="top-text">
@@ -44,7 +51,7 @@ export default {
   },
 
   css (p) {
-    return `<style>
+    return html`<style>
               .biz-card {
                   font-size: 16px;
                   font-family: sans-serif;

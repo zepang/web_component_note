@@ -1,9 +1,9 @@
 import Template from './template.js'
+import { render } from './lit-html/lit-html.js'
 
 class BizCard extends HTMLElement {
   connectedCallback () {
-    console.log(1233, Template)
-    this.innerHTML = Template.render({
+    render(Template.render(this, {
       first_name: 'Emmett',
       last_name: 'Brown',
       title: 'Student of all Sciences',
@@ -24,11 +24,11 @@ class BizCard extends HTMLElement {
         { name: 'star', uri: './images/star-logo.png'},
         { name: 'cone', uri: './images/cone-logo.png'},
       ],
-    })
-
+    }), this)
     this.dom = Template.mapDOM(this);
-    this.dom.backgroundPicker.addEventListener( 'change', e => this.updateGraphics());
-    this.dom.logoPicker.addEventListener('change', e => this.updateGraphics());
+    // this.updateGraphics()
+    // this.dom.backgroundPicker.addEventListener( 'change', e => this.updateGraphics());
+    // this.dom.logoPicker.addEventListener('change', e => this.updateGraphics());
   }
 
   updateGraphics() {
